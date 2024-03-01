@@ -2080,7 +2080,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 630,
+        "x": 690,
         "y": 720,
         "wires": []
     },
@@ -2089,7 +2089,7 @@
         "type": "function",
         "z": "c1aaf83c8aa74990",
         "name": "parseFloat and save",
-        "func": "msg.payload = parseFloat(msg.payload);\n\nflow.set(msg.topic.split(\"/\")[4], msg.payload);\n\nreturn msg;",
+        "func": "msg.payload = parseFloat(msg.payload);\n\nflow.set(msg.topic.split(\"/\")[4], msg.payload);\n\n\n\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
