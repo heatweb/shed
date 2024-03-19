@@ -2275,15 +2275,15 @@
         "id": "4a8a556b95c237e7",
         "type": "function",
         "z": "2aa78bc6adc06b59",
-        "name": "",
+        "name": "DHW Temperature",
         "func": "msg.topic2 = \"DHW Temperature\" ;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
-        "y": 960,
+        "x": 530,
+        "y": 1020,
         "wires": [
             [
                 "0c89ccc5dd9f7258",
@@ -2301,8 +2301,8 @@
             "ee3515c5.570468",
             "5e41cd277a8a50b6"
         ],
-        "x": 335,
-        "y": 960,
+        "x": 315,
+        "y": 1020,
         "wires": [
             [
                 "4a8a556b95c237e7"
@@ -2328,8 +2328,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 690,
-        "y": 920,
+        "x": 710,
+        "y": 960,
         "wires": [
             [
                 "91db2840c650a6c0"
@@ -2359,23 +2359,23 @@
         "seg1": "45",
         "seg2": "65",
         "className": "",
-        "x": 950,
-        "y": 1000,
+        "x": 930,
+        "y": 1060,
         "wires": []
     },
     {
         "id": "82fe09c4a10fc679",
         "type": "function",
         "z": "2aa78bc6adc06b59",
-        "name": "",
+        "name": "Flow Temperature",
         "func": "flow.set(\"tH\",msg.payload);\n\nmsg.topic2 = \"Flow Temperature\" ;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
-        "y": 840,
+        "x": 530,
+        "y": 900,
         "wires": [
             [
                 "0c89ccc5dd9f7258",
@@ -2421,7 +2421,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 910,
+        "x": 930,
         "y": 960,
         "wires": [
             []
@@ -2436,8 +2436,8 @@
             "c83521c5.371e2",
             "b3a13561.20ecf8"
         ],
-        "x": 335,
-        "y": 840,
+        "x": 315,
+        "y": 900,
         "wires": [
             [
                 "82fe09c4a10fc679"
@@ -2467,8 +2467,8 @@
         "seg1": "65",
         "seg2": "83",
         "className": "",
-        "x": 950,
-        "y": 840,
+        "x": 930,
+        "y": 900,
         "wires": []
     },
     {
@@ -2494,114 +2494,9 @@
         "seg1": "8",
         "seg2": "16",
         "className": "",
-        "x": 940,
-        "y": 1060,
+        "x": 920,
+        "y": 1120,
         "wires": []
-    },
-    {
-        "id": "b78feea927c9549b",
-        "type": "switch",
-        "z": "2aa78bc6adc06b59",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gt",
-                "v": "0.5",
-                "vt": "num"
-            },
-            {
-                "t": "gt",
-                "v": "0.25",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 3,
-        "x": 550,
-        "y": 100,
-        "wires": [
-            [
-                "881c23f36ef202f9"
-            ],
-            [],
-            [
-                "702de14ed67ac5e5"
-            ]
-        ]
-    },
-    {
-        "id": "881c23f36ef202f9",
-        "type": "change",
-        "z": "2aa78bc6adc06b59",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "true",
-                "tot": "bool"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "enable",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 760,
-        "y": 80,
-        "wires": [
-            [
-                "8a20b950abbf3bb9"
-            ]
-        ]
-    },
-    {
-        "id": "702de14ed67ac5e5",
-        "type": "change",
-        "z": "2aa78bc6adc06b59",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "enable",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 760,
-        "y": 120,
-        "wires": [
-            [
-                "8a20b950abbf3bb9"
-            ]
-        ]
     },
     {
         "id": "ea32715fd595df21",
@@ -2648,14 +2543,14 @@
         "id": "17c10fc5bd92edc1",
         "type": "function",
         "z": "2aa78bc6adc06b59",
-        "name": "CONTROL",
+        "name": "CONTROL to 55C",
         "func": "\nmsg.payload = msg.payload - 0.8;   // -0.5 to +0.5 PID\nmsg.payload = msg.payload * 100;  // percentage  -50% to 50%\n\nvar msg1={};\nmsg.topic = \"vPos\";\nmsg1.topic = \"vV\";\n\nif (flow.get(\"started\")>0) {\n    \n    var timemnow = new Date().getTime();\n    var tdiff = (timemnow - flow.get(\"started\"))/1000;\n    \n    var fC = flow.get(\"fC\") || 0;\n    var tCo = flow.get(\"tCo\") || 55;\n    var tC = flow.get(\"tC\") || 20;\n    var tH = flow.get(\"tH\") || 60;\n    \n    var tCoLast = flow.get(\"tCoLast\") || 50;\n    flow.set(\"tCoLast\",tCo);\n    \n    var tErr = 55 - tCo;\n    \n    var diffch = tCo - tCoLast;\n    \n    var offset = flow.get(\"offset\") || 0;\n    \n    //offset = offset -  (0.5* diffch);   // differential\n    \n    offset = offset + (fC * 0.005*(tErr));\n\n    if (offset> 5) { offset = 5; }\n    flow.set(\"offset\",offset);\n     \n    \n\n    var estpos = 1 * fC;\n\n    if (tH>tC+10) {\n        var ratio = (55 - tC) / (tH - (tC + 5)) \n        estpos = estpos * ratio;\n    }\n\n\n    \n    // if (tdiff < 20) {   // startup  (need to add step changes in inputs)\n        \n    //      msg.payload = estpos + ((tdiff/20) * msg.payload);\n        \n    // } else {\n        \n    //      msg.payload = msg.payload + estpos;\n        \n    // }\n\n    msg1.payload = estpos + offset;\n    //msg1.payload = estpos; \n\n    // Scaling to valve and spindle offset\n\n    msg1.payload = msg1.payload * 0.55; //50 / 100\n    \n    //msg1.payload =  msg.payload * 5 / 100   //  5.5v = 100% flow   // 10v?\n    //msg1.payload =  msg1.payload + 1; // spindle start\n    \n    msg.payload = 100 * msg1.payload / 10;\n    \n} else {\n    \n    msg.payload = 0;\n    msg1.payload = 0;\n}\n\n\nmsg.payload = parseInt(1000*msg.payload) / 1000;\nmsg1.payload = parseInt(1000*msg1.payload) / 1000;\n\nif (msg1.payload<0) { msg1.payload = 0; }\nif (msg1.payload>10) { msg1.payload = 10; }\n\n\n\nreturn [msg,msg1];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 710,
+        "x": 730,
         "y": 240,
         "wires": [
             [
@@ -2700,116 +2595,19 @@
         "id": "4ae91b04b36f5a27",
         "type": "function",
         "z": "2aa78bc6adc06b59",
-        "name": "",
+        "name": "volt to percent",
         "func": "msg.payload = msg.payload * 10;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1160,
-        "y": 480,
+        "x": 1060,
+        "y": 400,
         "wires": [
             [
-                "91db2840c650a6c0"
+                "8a52e14486f7d1c6"
             ]
-        ]
-    },
-    {
-        "id": "8a20b950abbf3bb9",
-        "type": "rbe",
-        "z": "2aa78bc6adc06b59",
-        "name": "",
-        "func": "rbe",
-        "gap": "",
-        "start": "",
-        "inout": "out",
-        "septopics": true,
-        "property": "payload",
-        "topi": "topic",
-        "x": 950,
-        "y": 100,
-        "wires": [
-            [
-                "65074ea90c2bc262"
-            ]
-        ]
-    },
-    {
-        "id": "f18688f3a41fbc7b",
-        "type": "change",
-        "z": "2aa78bc6adc06b59",
-        "name": "start time",
-        "rules": [
-            {
-                "t": "set",
-                "p": "started",
-                "pt": "flow",
-                "to": "",
-                "tot": "date"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1260,
-        "y": 80,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "65074ea90c2bc262",
-        "type": "switch",
-        "z": "2aa78bc6adc06b59",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 1090,
-        "y": 100,
-        "wires": [
-            [
-                "f18688f3a41fbc7b"
-            ],
-            [
-                "a8b5464bc49852b2"
-            ]
-        ]
-    },
-    {
-        "id": "a8b5464bc49852b2",
-        "type": "change",
-        "z": "2aa78bc6adc06b59",
-        "name": "kill start time",
-        "rules": [
-            {
-                "t": "delete",
-                "p": "started",
-                "pt": "flow"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1270,
-        "y": 120,
-        "wires": [
-            []
         ]
     },
     {
@@ -2876,11 +2674,10 @@
         "links": [
             "3170b36b737ba590"
         ],
-        "x": 685,
-        "y": 1060,
+        "x": 785,
+        "y": 1120,
         "wires": [
             [
-                "91db2840c650a6c0",
                 "6e7d9fcb65b49c4a"
             ]
         ]
@@ -2892,7 +2689,8 @@
         "name": "",
         "mode": "link",
         "links": [
-            "7bd8ad20b6035031"
+            "7bd8ad20b6035031",
+            "816f337c8a3be32b"
         ],
         "x": 515,
         "y": 160,
@@ -2910,8 +2708,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 390,
-        "y": 20,
+        "x": 550,
+        "y": 120,
         "wires": []
     },
     {
@@ -3214,8 +3012,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 270,
-        "y": 880,
+        "x": 210,
+        "y": 940,
         "wires": [
             [
                 "82fe09c4a10fc679"
@@ -3267,8 +3065,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 250,
-        "y": 1140,
+        "x": 230,
+        "y": 1200,
         "wires": [
             [
                 "4de8265c185692f1"
@@ -3298,8 +3096,8 @@
         "seg1": "65",
         "seg2": "83",
         "className": "",
-        "x": 720,
-        "y": 1140,
+        "x": 700,
+        "y": 1200,
         "wires": []
     },
     {
@@ -3315,8 +3113,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 260,
-        "y": 1200,
+        "x": 240,
+        "y": 1260,
         "wires": [
             [
                 "65d325d1bf9312db"
@@ -3346,8 +3144,8 @@
         "seg1": "65",
         "seg2": "83",
         "className": "",
-        "x": 730,
-        "y": 1200,
+        "x": 710,
+        "y": 1260,
         "wires": []
     },
     {
@@ -3363,8 +3161,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 260,
-        "y": 1260,
+        "x": 240,
+        "y": 1320,
         "wires": [
             [
                 "48ae64954f4f78a3"
@@ -3394,8 +3192,8 @@
         "seg1": "65",
         "seg2": "83",
         "className": "",
-        "x": 730,
-        "y": 1260,
+        "x": 710,
+        "y": 1320,
         "wires": []
     },
     {
@@ -3436,8 +3234,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 690,
-        "y": 1100,
+        "x": 670,
+        "y": 1160,
         "wires": [
             []
         ]
@@ -3469,8 +3267,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 500,
-        "y": 1140,
+        "x": 480,
+        "y": 1200,
         "wires": [
             [
                 "6dbe05cc1472cd5b",
@@ -3505,8 +3303,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 500,
-        "y": 1200,
+        "x": 480,
+        "y": 1260,
         "wires": [
             [
                 "30e7dd32cee2edb7",
@@ -3541,8 +3339,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 500,
-        "y": 1260,
+        "x": 480,
+        "y": 1320,
         "wires": [
             [
                 "fc02e83aa4d82a90",
@@ -3573,8 +3371,8 @@
         "seg1": "65",
         "seg2": "83",
         "className": "",
-        "x": 610,
-        "y": 1380,
+        "x": 590,
+        "y": 1440,
         "wires": []
     },
     {
@@ -3588,8 +3386,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
-        "y": 1380,
+        "x": 420,
+        "y": 1440,
         "wires": [
             [
                 "f78b7b996d206cac"
@@ -3617,8 +3415,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 270,
-        "y": 1380,
+        "x": 250,
+        "y": 1440,
         "wires": [
             [
                 "ede6e52c8f56da3a"
@@ -3638,8 +3436,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 230,
-        "y": 1320,
+        "x": 210,
+        "y": 1380,
         "wires": [
             [
                 "679250d0088aa22a"
@@ -3669,8 +3467,8 @@
         "seg1": "65",
         "seg2": "83",
         "className": "",
-        "x": 720,
-        "y": 1320,
+        "x": 700,
+        "y": 1380,
         "wires": []
     },
     {
@@ -3700,8 +3498,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 500,
-        "y": 1320,
+        "x": 480,
+        "y": 1380,
         "wires": [
             [
                 "20889db35a414327",
@@ -3772,7 +3570,7 @@
         "links": [
             "956fa0cef947ea21"
         ],
-        "x": 495,
+        "x": 505,
         "y": 580,
         "wires": []
     },
@@ -3797,8 +3595,8 @@
         "topic": "",
         "payload": "1",
         "payloadType": "str",
-        "x": 180,
-        "y": 580,
+        "x": 250,
+        "y": 680,
         "wires": [
             [
                 "832338714f59cc4a"
@@ -3826,8 +3624,8 @@
         "topic": "",
         "payload": "0",
         "payloadType": "str",
-        "x": 180,
-        "y": 620,
+        "x": 250,
+        "y": 720,
         "wires": [
             [
                 "832338714f59cc4a"
@@ -3838,10 +3636,10 @@
         "id": "ba8e6dc48faaa812",
         "type": "comment",
         "z": "2aa78bc6adc06b59",
-        "name": "Enable DHW via Plate",
+        "name": "Manual Enable DHW via Plate",
         "info": "",
-        "x": 210,
-        "y": 540,
+        "x": 220,
+        "y": 640,
         "wires": []
     },
     {
@@ -3865,8 +3663,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 190,
-        "y": 700,
+        "x": 170,
+        "y": 580,
         "wires": [
             [
                 "deb286598067fc4b"
@@ -3878,14 +3676,14 @@
         "type": "function",
         "z": "2aa78bc6adc06b59",
         "name": "On Off",
-        "func": "var timin = 1 * msg.payload;\n\nvar tTop = flow.get(\"tTop\") || 0;\nvar tMiddle = flow.get(\"tMiddle\") || 55;\nvar tBottom = flow.get(\"tBottom\") || 20;\nvar tC = flow.get(\"tC\") || 20;\n\n//msg.payload = 0;\n\nif (tTop < 50) { msg.payload = 1; flow.set(\"started\", timin); }\n\nelse if (tBottom > 50 && flow.get(\"started\")>0) { msg.payload = 0; flow.set(\"started\", 0); }\n\n\nelse if (tC > 40 && flow.get(\"started\") > 0) { msg.payload = 0; flow.set(\"started\", 0); }\n\nelse { return null;}\n\nreturn msg;",
+        "func": "var timin = 1 * msg.payload;\n\nvar tTop = flow.get(\"tTop\") || 0;\nvar tMiddle = flow.get(\"tMiddle\") || 55;\nvar tBottom = flow.get(\"tBottom\") || 20;\nvar tC = flow.get(\"tC\") || 20;\n\n//msg.payload = 0;\n\nif (tTop < 40) { msg.payload = 1; flow.set(\"started\", timin); }\n\nelse if (tBottom > 50 && flow.get(\"started\")>0) { msg.payload = 0; flow.set(\"started\", 0); }\n\n\nelse if (tC > 40 && flow.get(\"started\") > 0) { msg.payload = 0; flow.set(\"started\", 0); }\n\nelse { return null;}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 700,
+        "y": 580,
         "wires": [
             [
                 "832338714f59cc4a"
@@ -3985,6 +3783,56 @@
                 "866652a413c9be9d"
             ]
         ]
+    },
+    {
+        "id": "745fec2d52742ec4",
+        "type": "comment",
+        "z": "2aa78bc6adc06b59",
+        "name": "On / Off Control based on storage temperatures",
+        "info": "",
+        "x": 260,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "816f337c8a3be32b",
+        "type": "link in",
+        "z": "2aa78bc6adc06b59",
+        "name": "link in 5",
+        "links": [
+            "8a52e14486f7d1c6",
+            "3170b36b737ba590"
+        ],
+        "x": 825,
+        "y": 940,
+        "wires": [
+            [
+                "91db2840c650a6c0"
+            ]
+        ]
+    },
+    {
+        "id": "8a52e14486f7d1c6",
+        "type": "link out",
+        "z": "2aa78bc6adc06b59",
+        "name": "link out 18",
+        "mode": "link",
+        "links": [
+            "816f337c8a3be32b"
+        ],
+        "x": 1185,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "bb2d3776592b7fd2",
+        "type": "comment",
+        "z": "2aa78bc6adc06b59",
+        "name": "Incoming data and dashboarding",
+        "info": "",
+        "x": 210,
+        "y": 840,
+        "wires": []
     },
     {
         "id": "f63612820bba4e18",
